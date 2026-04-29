@@ -212,11 +212,22 @@ function render() {
         `;
     }
 }
+const answerKeysByStep = {
+    space: 'space',
+    light: 'light',
+    experience: 'experience',
+    water: 'water',
+};
 
 function goBack() {
     const currentIndex = stepOrder.indexOf(step);
-
     if (currentIndex <= 0) return;
+
+    const currentStepKey = answerKeysByStep[step];
+
+    if (currentStepKey) {
+        answers[currentStepKey] = null;
+    }
 
     step = stepOrder[currentIndex - 1];
     render();
